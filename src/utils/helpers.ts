@@ -1,5 +1,5 @@
 import { format, formatDistanceToNow, isAfter, isBefore, parseISO } from 'date-fns';
-import type { AnyParaItem, Project, Area, Resource, Archive, ParaCategory } from '../types';
+import type { AnyParaItem, Project, ParaCategory } from '../types';
 
 /**
  * Generate a unique ID

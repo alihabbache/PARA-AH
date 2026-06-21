@@ -3,13 +3,11 @@ import { persist } from 'zustand/middleware';
 import type {
   AnyParaItem,
   Project,
-  Area,
-  Resource,
-  Archive,
   ParaCategory,
   FilterOptions,
   SortOptions,
   ViewMode,
+  Archive,
 } from '../types';
 
 interface ParaState {
