@@ -2,6 +2,7 @@ import { useParaStore } from '../store/useParaStore';
 import { getCategoryName, getCategoryDescription } from '../utils/helpers';
 import { Grid3x3, List, LayoutGrid } from 'lucide-react';
 import type { ViewMode } from '../types';
+import { ItemCard } from './ItemCard';
 
 export const MainContent = () => {
   const { activeCategory, viewMode, setViewMode, getFilteredItems } = useParaStore();
@@ -67,27 +68,7 @@ export const MainContent = () => {
             ${viewMode === 'kanban' ? 'flex gap-6 overflow-x-auto' : ''}
           `}>
             {items.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow"
-              >
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                  {item.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {item.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <ItemCard key={item.id} item={item} />
             ))}
           </div>
         )}

@@ -1,7 +1,9 @@
 import { FolderKanban, Target, BookOpen, Archive, Plus } from 'lucide-react';
+import { useState } from 'react';
 import { useParaStore } from '../store/useParaStore';
 import type { ParaCategory } from '../types';
 import { getCategoryName } from '../utils/helpers';
+import { QuickCapture } from './QuickCapture';
 
 const categories: { id: ParaCategory; icon: any; color: string }[] = [
   { id: 'projects', icon: FolderKanban, color: 'text-blue-600 bg-blue-50' },
@@ -12,16 +14,26 @@ const categories: { id: ParaCategory; icon: any; color: string }[] = [
 
 export const Sidebar = () => {
   const { activeCategory, setActiveCategory, items, getItemsByCategory } = useParaStore();
+  const [isQuickCaptureOpen, setIsQuickCaptureOpen] = useState(false);
 
   return (
     <aside className="w-64 bg-white border-r border-gray-200 flex flex-col">
       {/* Quick Add Button */}
       <div className="p-4">
-        <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium">
+        <button
+          onClick={() => setIsQuickCaptureOpen(true)}
+          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium"
+        >
           <Plus className="w-5 h-5" />
           Quick Add
         </button>
       </div>
+
+      {/* Quick Capture Modal */}
+      <QuickCapture
+        isOpen={isQuickCaptureOpen}
+        onClose={() => setIsQuickCaptureOpen(false)}
+      />
 
       {/* Navigation */}
       <nav className="flex-1 px-3 py-2">
